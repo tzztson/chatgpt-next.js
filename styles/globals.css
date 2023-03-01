@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
