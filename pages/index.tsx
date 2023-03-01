@@ -8,7 +8,7 @@ export default function Home() {
 
   const [messageText, setMessageText] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [userChat, setUserChat] = useState<string[]>([]);
   const [botChat, setBotChat] = useState<string[]>([]);
@@ -63,7 +63,6 @@ export default function Home() {
   };
 
   const sendMessage = () => {
-  
     botResponse();
     setUserChat((messageText.trim().length === 0) ? userChat : [...userChat, messageText]);
     
@@ -104,10 +103,10 @@ export default function Home() {
                   {botChat[key] && <div key={`botchat-${key}`} className='flex flex-col gap-2 items-start justify-center break-words'>
                     <div className='bg-white rounded-2xl px-6 py-2 max-w-[50%]'>{botChat[key]}</div>
                   </div>}
-                  {/* {isLoading && } */}
                 </div>
               )
             })}
+            {isLoading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
           </div>
         </div>
 
