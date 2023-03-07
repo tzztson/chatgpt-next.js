@@ -2,11 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-.chat-container::-webkit-scrollbar {
-    display: none;
+.text-true {
+  @apply text-white;
+}
+
+.text-false {
+  @apply text-sky-400;
+}
+
+.bg-true {
+  @apply bg-[#212121];
+}
+
+.bg-false {
+  @apply bg-white;
+}
+
+.container-bg-true {
+  @apply bg-[#0f0f0f];
 }
 
 
+.container-bg-false {
+  @apply bg-sky-100;
+}
+
+.input-bg-true {
+  @apply bg-[#212121];
+}
+
+.input-bg-false {
+  @apply bg-sky-50;
+}
+
+.input-border-true {
+  @apply border-gray-300
+}
+
+.input-border-false {
+  @apply border-sky-300
+}
+
+.input-text-true {
+  @apply text-white;
+}
+
+.input-text-false {
+  @apply text-sky-900;
+}
+
+.button-bg-true {
+  @apply bg-[#8774e1];
+}
+
+.button-bg-false {
+  @apply bg-sky-500;
+}
+
+.input-user-chat-bg-true {
+  @apply bg-[#8774e1];
+ }
+
+.input-user-chat-bg-false {
+ @apply bg-[#efffde];
+}
+
+.input-user-chat-color-true {
+  @apply text-white;
+ }
+
+.input-user-chat-color-false {
+ @apply text-black;
+}
+
+.input-bot-chat-bg-true {
+  @apply bg-[#212121];
+ }
+
+.input-bot-chat-bg-false {
+  @apply bg-white;
+ }
+
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
 
   .lds-ellipsis {
     display: inline-block;

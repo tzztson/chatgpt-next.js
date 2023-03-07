@@ -13,8 +13,13 @@ export const config = {
   runtime: "edge",
 };
 
+let message_junk = "";
+
 const handler = async (req: Request): Promise<Response> => {
+  
   const { messageText } = (await req.json()) as RequestData;
+
+  message_junk += `${messageText} \n` ;
 
   if (!messageText) {
     return new Response("No prompt in the request", { status: 400 });
@@ -22,12 +27,12 @@ const handler = async (req: Request): Promise<Response> => {
 
   const payload: OpenAIStreamPayload = {
     model: "text-davinci-003",
-    prompt: `${messageText}`,
+    prompt: message_junk,
     temperature: 0.7,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    max_tokens: 200,
+    max_tokens: 1000,
     stream: true,
     n: 1,
   };
