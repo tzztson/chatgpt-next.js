@@ -1,6 +1,7 @@
 import { DarkContext } from "@/context/DarkContext";
 import { useState, useEffect, useRef, useContext } from "react";
 
+import TypeWriter from "./typeWriter";
 
 const Container = () => {
 
@@ -15,8 +16,6 @@ const Container = () => {
     const [userChat, setUserChat] = useState<string[]>([]);
     const [botChat, setBotChat] = useState<string[]>([]);
 
-
-    const [isDark, setIsDark] = useState("light");
 
     const botResponse = async () => {
         setIsLoading(true);
@@ -81,9 +80,14 @@ const Container = () => {
         }
     }
 
+
+
+
     useEffect(() => {
         handleScroll(scrollContainer.current);
     }, [userChat, botChat])
+
+
 
     return (
         <div className={`bg-${darkMode}`}>
@@ -105,10 +109,10 @@ const Container = () => {
                                 <div key={`userchat-${key}`} className='flex flex-col my-2 items-end justify-center'>
                                     <div className={`input-user-chat-bg-${darkMode} input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full break-words`}>{ele}</div>
                                 </div>
-                                {botChat[key] && <div key={`botchat-${key}`} className='flex flex-col my-2 items-start justify-center break-words'> 
+                                {botChat[key] && <div key={`botchat-${key}`} className='flex flex-col my-2 items-start justify-center break-words'>
                                     <div className={`input-bot-chat-bg-${darkMode} input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full`}>
                                         {botChat[key].split("\n").map((ele: any, indkey: any) => {
-                                            return <p className="max-md:w-full" key={`indkey-${indkey}`}>{ele}</p>
+                                            return <TypeWriter key={`indkey-${indkey}`} typeContent={ele} />
                                         })}</div>
                                 </div>}
                             </div>
@@ -122,7 +126,7 @@ const Container = () => {
                     <textarea value={messageText} onChange={e => setMessageText(e.target.value)} onKeyUp={handleEnterKey}
                         className={`input-bg-${darkMode} rounded-full outline-none  border input-border-${darkMode} input-text-${darkMode} w-full h-14 px-6 py-3 resize-none`}
                         placeholder="PLEASE TYPE YOUR TEXT HERE ..." />
-                    <button className={`button-bg-${darkMode} max-sm:hidden rounded-full text-white text-3xl font-black px-6 py-2 active:translate-y-1`} onClick={sendMessage}>
+                    <button className={`button-bg-${darkMode} max-sm:hidden rounded-full text-white text-2xl font-black px-6 py-2 active:translate-y-1`} onClick={sendMessage}>
                         Send
                     </button>
                 </div>
