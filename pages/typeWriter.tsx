@@ -12,7 +12,7 @@ const TypeWriter = ({ typeContent }: any) => {
     }
 
     useEffect(() => {
-        const interval = setInterval(() => handleTyping(), 25);
+        const interval = setInterval(() => handleTyping(), 200);
         return () => clearInterval(interval);
     }, []);
 

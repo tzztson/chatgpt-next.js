@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.header-true {
+  @apply bg-[#212121]
+}
+
+.header-false {
+  @apply bg-white
+}
+
 .text-true {
   @apply text-white;
 }
