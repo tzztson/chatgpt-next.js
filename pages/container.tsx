@@ -10,6 +10,7 @@ const Container = () => {
     const { darkMode, toggleDarkMode }: any = useContext(DarkContext);
 
     const scrollContainer = useRef(null);
+    const focus = useRef<any>(null);
 
     const [messageText, setMessageText] = useState('');
 
@@ -67,12 +68,14 @@ const Container = () => {
         });
     };
 
+    
+    
     const sendMessage = () => {
+        if (isLoading) return;
         if ((messageText.trim().length !== 0)) {
             botResponse();
         }
         setUserChat((messageText.trim().length === 0) ? userChat : [...userChat, messageText]);
-
         setMessageText("");
     }
 
@@ -82,7 +85,11 @@ const Container = () => {
         }
     }
 
-
+    useEffect(()=> {
+        if(isLoading === false){
+            focus?.current?.focus();
+        }
+    }, [isLoading])
 
 
     useEffect(() => {
@@ -95,9 +102,9 @@ const Container = () => {
         <div className={`bg-${darkMode}`}>
             <div className={`flex gap-8 items-center justify-center h-[10vh] relative header-${darkMode}`}>
                 <h1 className={`text-${darkMode} py-4 text-2xl  font-bold  text-center py-7`}>ChatGPT</h1>
-               <div className="absolute right-4" onClick={toggleDarkMode}>
-                {darkMode?<Image src="/assets/images/icons/light-sun.svg" alt="tool" width={0} height={0} className="w-12 h-12" />:<Image src="/assets/images/icons/dark-moon.svg" alt="tool" width={0} height={0} className="w-12 h-12" />}
-               </div>
+                <div className="absolute right-4" onClick={toggleDarkMode}>
+                    {darkMode ? <Image src="/assets/images/icons/light-sun.svg" alt="tool" width={0} height={0} className="w-12 h-12" /> : <Image src="/assets/images/icons/dark-moon.svg" alt="tool" width={0} height={0} className="w-12 h-12" />}
+                </div>
             </div>
             <div className={`container-bg-${darkMode}`}>
                 <div className='container mx-auto px-12 max-sm:px-6 py-6 overflow-auto h-[80vh] chat-container' ref={scrollContainer}>
@@ -119,15 +126,19 @@ const Container = () => {
                     {isLoading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
                 </div>
             </div>
-            <div className='container mx-auto px-12 max-sm:px-2 flex justify-center h-[10vh]'>
-                <div className="relative w-1/2 flex items-center py-6 max-sm:py-2 max-xl:w-full flex justify-center max-md:flex-col max-md:items-center gap-4">
-                    <textarea value={messageText} onChange={e => setMessageText(e.target.value)} onKeyUp={handleEnterKey}
-                        className={`input-bg-${darkMode} rounded-full outline-none  border input-border-${darkMode} input-text-${darkMode} w-full h-14 px-6 py-3 resize-none`}
+            <div className='container mx-auto px-12 max-sm:px-2 flex justify-center h-[10vh] relative'>
+                {isLoading ? <div className="relative w-1/2 flex items-center max-sm:py-2 max-xl:w-full flex justify-center max-md:flex-col max-md:items-center gap-4">
+                    <textarea disabled value={messageText} onChange={e => setMessageText(e.target.value)} onKeyUp={handleEnterKey}
+                        className={`input-bg-${darkMode}  rounded-full outline-none  border input-border-${darkMode} input-text-${darkMode} w-full h-14 px-6 py-3 resize-none`}
                         placeholder="PLEASE TYPE YOUR TEXT HERE ..." />
-                    {/* <button className={`button-bg-${darkMode} bg-white max-sm:hidden rounded-full shadow-2xl text-2xl font-black py-2 px-3  active:translate-y-1`} onClick={sendMessage}> */}
-                        <Image src="/assets/images/icons/message-send.svg" width={0} height={0} className="w-12 h-12 active:translate-y-1" onClick={sendMessage}   alt=""/>
-                    {/* </button> */}
-                </div>
+                    <Image src="/assets/images/icons/send-message.png" width={32} height={32} className={`absolute right-4 active:translate-y-1`} onClick={sendMessage} alt="" />
+                </div> : <div className="relative w-1/2 flex items-center max-sm:py-2 max-xl:w-full flex justify-center max-md:flex-col max-md:items-center gap-4">
+                    <textarea ref={focus} value={messageText} onChange={e => setMessageText(e.target.value)} onKeyUp={handleEnterKey}
+                        className={`input-bg-${darkMode}  rounded-full outline-none  border input-border-${darkMode} input-text-${darkMode} w-full h-14 px-6 py-3 resize-none`}
+                        placeholder="PLEASE TYPE YOUR TEXT HERE ..." />
+                    <Image src="/assets/images/icons/send-message.png" width={32} height={32} className={`absolute right-4 active:translate-y-1`} onClick={sendMessage} alt="" />
+                </div>}
+
 
             </div>
         </div>

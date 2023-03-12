@@ -87,6 +87,10 @@
   @apply bg-[#212121];
  }
 
+.isLoading-true {
+  @apply opacity-10;
+}
+
 .input-bot-chat-bg-false {
   @apply bg-white;
  }
