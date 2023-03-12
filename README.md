@@ -1,8 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [`ChatGPT`](http://135.181.49.37/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, please create .env file in root folder of project directory.
+
+```bash
+OPENAI_API_KEY = YOUR API KEY HERE
+```
+
+Second, run the development server:
 
 ```bash
 npm run dev

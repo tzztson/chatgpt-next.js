@@ -22,7 +22,7 @@ const handler = async (req: Request): Promise<Response> => {
   message_junk += `${messageText} \n` ;
 
   if (!messageText) {
-    return new Response("No prompt in the request", { status: 400 });
+    return new Response("No prompt in the request, Please check README.md else please contact via my mail: zhenghu61919@gmail.com", { status: 400 });
   }
 
   const payload: OpenAIStreamPayload = {
