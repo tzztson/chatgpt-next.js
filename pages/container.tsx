@@ -111,13 +111,13 @@ const Container = () => {
                     {userChat.map((ele, key) => {
                         return (
                             <div key={`blockchat-${key}`}>
-                                <div key={`userchat-${key}`} className='flex flex-col my-2 items-end justify-center'>
-                                    <div className={`input-user-chat-bg-${darkMode} input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full break-words`}>{ele}</div>
+                                <div key={`userchat-${key}`} className='chat chat-end flex flex-col my-2 items-end justify-center'>
+                                    <div className={`input-user-chat-bg-${darkMode} chat-bubble input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full break-words`}>{ele}</div>
                                 </div>
-                                {botChat[key] && <div key={`botchat-${key}`} className='flex flex-col my-2 items-start justify-center break-words'>
-                                    <div className={`input-bot-chat-bg-${darkMode} input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full`}>
+                                {botChat[key] && <div key={`botchat-${key}`} className='chat chat-start flex flex-col my-2 items-start justify-center break-words'>
+                                    <div className={`chat chat-start input-bot-chat-bg-${darkMode} chat-bubble input-user-chat-color-${darkMode} rounded-2xl px-6 py-2 max-w-[50%] max-lg:max-w-full`}>
                                         {botChat[key].split("\n").map((ele: any, indkey: any) => {
-                                            return <p key={`indkey-${indkey}`}>{ele}</p>
+                                            return <p key={`indkey-${indkey}`} className="">{ele}</p>
                                         })}</div>
                                 </div>}
                             </div>
